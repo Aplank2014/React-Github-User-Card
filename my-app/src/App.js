@@ -8,36 +8,40 @@ import './App.css';
       super();
       this.state = {
         users: [] ,
-        login: ""
+        login: ''
       }
-    }
+    };
+
   componentDidMount() {
     console.log("CDM running");
     axios
-    .get ("https://api.github.com/users/aplank14")
+    .get ('https://api.github.com/users/aplank2014')
     .then((res) => {
-      this.setState({ users: res.data};
-      console.log(this.state);
+      this.setState({ users: res.data});
     })
-    .catch((err) => console.log(err));
-  }
+    .catch((err) => {
+      console.log(err);
+  });
+};
 
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevState, prevProps) {
     if (prevState.users !== this.state.users) {
-      console.log("User has changed!");
+      console.log("User Has Changed")
     }
     if (prevState.login !== this.state.login) {
-      console.log("State updated, followers:", this.state.followers);
+      console.log("State Updated, user Followers", this.state.login)
     }
-  }
-  fetchUsers = () => {
+  };
+
+  fetchUser = () => {
     axios
     .get(`https://api.github.com/users/${this.state.login}`)
     .then((res) => {
       this.setState({ users: res.data});
     })
-    catch((err) => console.log(err));
+    .catch((err) => console.log(err));
   };
+
 
   handleChanges = (e) => {
     console.log("handleChanges called");
@@ -45,8 +49,9 @@ import './App.css';
       // take the previous state, and just change the followers text
       ...this.state,
       login: e.target.value
-    })
-  }
+    });
+  };
+
   render() {
     console.log("Render");
     return (
@@ -57,7 +62,7 @@ import './App.css';
           value={this.state.login}
           onChange={this.handleChanges}
         />
-        <button onClick={this.fetchUsers}>Search Users</button>
+        <button onClick={this.fetchUser}>Search Users</button>
         <div>
           <img src={this.state.users.avatar_url} alt='profile '/>
           <div>
