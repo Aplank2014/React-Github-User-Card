@@ -63,9 +63,12 @@ import './App.css';
           onChange={this.handleChanges}
         />
         <button onClick={this.fetchUser}>Search Users</button>
+        <br></br>
+        <br></br>
         <div>
           <img src={this.state.users.avatar_url} alt='profile '/>
           <div>
+            <p>Name: {this.state.users.name}</p>
             <p>Bio: {this.state.users.bio}</p>
             <p>Followers: {this.state.users.followers}</p>
             <p>Following: {this.state.users.following}</p>
